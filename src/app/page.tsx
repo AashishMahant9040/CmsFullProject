@@ -1,11 +1,10 @@
-"use client"
-
-
+import Image from "next/image";
+import OverViewPage from "./dashbord/overview/_components/overview";
 
 export default function Home() {
   return (
-    <div className="bg-[#06040B] text-gray-200">
-      Dashboard
-    </div>
+   <>
+   <OverViewPage/>
+   </>
   );
 }
