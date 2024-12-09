@@ -1,6 +1,6 @@
 import React from 'react'
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
-import { Trash2 } from 'lucide-react';
+import { Trash2, TriangleAlert } from 'lucide-react';
 
 
 import {
@@ -100,12 +100,12 @@ const Page = () => {
 
 
     return (
-        <div className='w-full h-full text-gray-200 p-20 pt-2'>
+        <div className='w-full h-full text-gray-200 p-2 sm:p-4 md:px-10 lg:px-20 pt-2'>
             <div className='max-w-[800px]'>
-                <h2 className='my-10 text-5xl font-semibold'>Notification</h2>
+                <h2 className='my-4 md:my-10 text-2xl md:text-5xl font-semibold'>Notification</h2>
                 {
                     data.map((data, index) => (
-                        <div className={`my-2 p-4 border-b-[1px] border-gray-800 ${index < 5 ? "bg-gray-900" : ""}`}>
+                        <div className={`my-2 p-2 md:p-4 border-b-[1px] border-gray-800 rounded-lg ${index < 5 ? "bg-gray-900" : ""}`}>
                             <div className='flex flex-row items-center gap-5 justify-between'>
 
                                 <div className='flex flex-row items-center gap-2'>
@@ -114,7 +114,7 @@ const Page = () => {
                                         <AvatarFallback>CN</AvatarFallback>
                                     </Avatar>
                                     <div>
-                                        <p>Notification from {data.name}</p>
+                                        <p className='text-sm md:text-base'>Notification from {data.name}</p>
                                         <p className='text-xs text-gray-400'>{data.date}</p>
                                     </div>
                                 </div>
@@ -127,23 +127,21 @@ const Page = () => {
                                         <Trash2 className='w-5 h-5 text-gray-500 hover:text-red-500 cursor-pointer' />
                                     </AlertDialogTrigger>
 
-                                    <AlertDialogContent>
+                                    <AlertDialogContent className=''>
 
                                         <AlertDialogHeader>
                                             <AlertDialogTitle></AlertDialogTitle>
-                                            <AlertDialogDescription>
-                                                This action cannot be undone. This will permanently delete your account
-                                                and remove your data from our servers.
+                                            <AlertDialogDescription className='h-28' >
+                                                <TriangleAlert className='w-24 h-24 mx-auto text-red-500' />
                                             </AlertDialogDescription>
-                                            <AlertDialogDescription>
-                                                This action cannot be undone. This will permanently delete your account
-                                                and remove your data from our servers.
+                                            <AlertDialogDescription className='w-full text-center'>
+                                                This action cannot be undone. It will permanently delete your notification and all related data from our servers.
                                             </AlertDialogDescription>
                                         </AlertDialogHeader>
 
                                         <AlertDialogFooter>
                                             <AlertDialogCancel>Cancel</AlertDialogCancel>
-                                            <AlertDialogAction>Continue</AlertDialogAction>
+                                            <AlertDialogAction className='bg-red-500 hover:bg-red-600'>Delete</AlertDialogAction>
                                         </AlertDialogFooter>
 
                                     </AlertDialogContent>
@@ -153,7 +151,7 @@ const Page = () => {
 
                             </div>
 
-                            <div className='text-gray-400 text-sm my-2'>
+                            <div className='text-gray-400 text-xs md:text-sm my-2'>
                                 <p>{data.message}</p>
                             </div>
                         </div>
