@@ -39,7 +39,7 @@ export function TrendingPosts() {
     <div className="space-y-8">
       {/* Trending Posts Section */}
       {trendingPosts.map((post) => (
-        <div key={post.id} className="flex items-center space-x-4 p-4 border-b border-gray-200 hover:bg-gray-50 transition-all">
+        <div key={post.id} className="flex items-center space-x-4 p-4 border-b border-gray-800 hover:transition-all">
           <Avatar className="h-12 w-12">
             <AvatarImage src={post.avatarSrc} alt={`Avatar of ${post.author}`} />
             <AvatarFallback>{post.author[0]}</AvatarFallback>

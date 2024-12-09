@@ -115,14 +115,14 @@ export default function OverViewPage() {
             {/* Main Content Layout */}
             <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-12">
               {/* Bar Graph */}
-              <div className="col-span-12 lg:col-span-7 bg-black p-4 rounded-lg">
+              <div className="col-span-12 lg:col-span-7  p-4 rounded-lg">
                 <BarGraph />
               </div>
 
               {/* Trending Posts Card */}
-              <Card className="col-span-12 lg:col-span-5 bg-black text-white p-4 rounded-lg">
+              <Card className="col-span-12 lg:col-span-5 bg-black text-white p-4 rounded-">
                 <CardHeader>
-                  <CardTitle>Trending Posts</CardTitle>
+                  <CardTitle className='mx-auto'>Trending Posts</CardTitle>
                   <CardDescription>Trending posts for this month</CardDescription>
                 </CardHeader>
                 <CardContent>
