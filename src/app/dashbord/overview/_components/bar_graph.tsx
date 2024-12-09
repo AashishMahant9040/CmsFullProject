@@ -81,7 +81,7 @@ const BarGraph = () => {
   ];
 
   return (
-    <div className="bg-gray-900 p-6 rounded-lg shadow-lg">
+    <div className="bg-black p-6 rounded-lg shadow-lg">
       <ReactApexChart options={options} series={series} type="bar" height={350} />
     </div>
   );
