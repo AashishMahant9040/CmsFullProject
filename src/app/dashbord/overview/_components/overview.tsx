@@ -1,6 +1,6 @@
-import { AreaGraph } from './area_graph';
-import { BarGraph } from './bar_graph';
-import { PieGraph } from './pie_graph';
+'use client';
+import React from 'react';
+import BarGraph from './bar_graph';
 import PageContainer from '@/components/layout/page-container';
 import { TrendingPosts } from './recent_post';
 import {
@@ -8,7 +8,7 @@ import {
   CardContent,
   CardDescription,
   CardHeader,
-  CardTitle
+  CardTitle,
 } from '@/components/ui/card';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 
@@ -17,14 +17,12 @@ export default function OverViewPage() {
     <PageContainer scrollable>
       <div className="space-y-1 bg-black text-white">
         <div className="flex items-center justify-between space-y-1">
-          <h2 className="text-2xl font-bold tracking-tight">
-            Hi, Welcome back 👋
-          </h2>
+          <h2 className="text-2xl font-bold tracking-tight">Hi, Welcome back 👋</h2>
         </div>
         <Tabs defaultValue="overview" className="space-y-4">
-          
           <TabsContent value="overview" className="space-y-4">
             <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
+              {/* Cards for various statistics */}
               <Card className="bg-black text-white">
                 <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
                   <CardTitle className="text-sm font-medium">Total Revenue</CardTitle>
@@ -113,11 +111,16 @@ export default function OverViewPage() {
                 </CardContent>
               </Card>
             </div>
-            <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-7">
-              <div className="col-span-4">
+
+            {/* Main Content Layout */}
+            <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-12">
+              {/* Bar Graph */}
+              <div className="col-span-12 lg:col-span-7 bg-black p-4 rounded-lg">
                 <BarGraph />
               </div>
-              <Card className="col-span-4 md:col-span-3 bg-black text-white">
+
+              {/* Trending Posts Card */}
+              <Card className="col-span-12 lg:col-span-5 bg-black text-white p-4 rounded-lg">
                 <CardHeader>
                   <CardTitle>Trending Posts</CardTitle>
                   <CardDescription>Trending posts for this month</CardDescription>
@@ -126,12 +129,6 @@ export default function OverViewPage() {
                   <TrendingPosts />
                 </CardContent>
               </Card>
-              <div className="col-span-4">
-                <AreaGraph />
-              </div>
-              <div className="col-span-4 md:col-span-3 bg-black text-white">
-                <PieGraph />
-              </div>
             </div>
           </TabsContent>
         </Tabs>
