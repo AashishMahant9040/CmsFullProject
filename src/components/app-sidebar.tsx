@@ -23,7 +23,6 @@ import { useRouter } from "next/navigation";
 import { Separator } from "@/components/ui/separator"
 import Link from "next/link";
 import { ForwardRefExoticComponent, RefAttributes, useState } from "react";
-import { IconType } from "recharts/types/component/DefaultLegendContent";
 
 
 
@@ -47,13 +46,23 @@ const items: MenuItem[] = [
     icon: ScrollText,
     subMenu: [
       {
+        title: "New Post",
+        url: "/newPost",
+        icon: Home,
+      },
+      {
         title: "All Post",
         url: "/allPost",
         icon: Home,
       },
       {
-        title: "New Post",
-        url: "/newPost",
+        title: "Category",
+        url: "/category",
+        icon: Home,
+      },
+      {
+        title: "Tags",
+        url: "/tags",
         icon: Home,
       },
     ]
