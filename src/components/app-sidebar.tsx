@@ -37,7 +37,7 @@ interface MenuItem {
 const items: MenuItem[] = [
   {
     title: "Dashboard",
-    url: "/",
+    url: "/dashboard",
     icon: Home,
   },
   {

@@ -1,10 +1,23 @@
+'use client'
 import Image from "next/image";
-import OverViewPage from "./dashbord/overview/_components/overview";
+import { useRouter } from "next/navigation";
+import { useEffect } from "react";
 
 export default function Home() {
+
+  const router = useRouter()
+
+  useEffect(() => {
+    router.push('/dashboard');
+  })
+
+
+
+
   return (
    <>
-   <OverViewPage/>
+    Main
    </>
   );
 }
+
