@@ -9,7 +9,7 @@ import {
   TableHead,
   TableHeader,
   TableRow,
-} from  "@/components/ui/table";
+} from "@/components/ui/table";
 
 const initialAdmins = [
   { id: 1, name: 'Super Admin', email: 'superadmin@example.com', role: 'Super Admin' },

@@ -1,6 +1,6 @@
 'use client';
 import React, { useState } from 'react';
-import { FaTrashAlt, FaEdit, FaEllipsisH } from 'react-icons/fa'; // Add the 'ellipsis' icon for the action button
+import { FaTrashAlt, FaEdit, FaEllipsisH, FaPlus } from 'react-icons/fa'; // Add the 'plus' icon for the add button
 import { Table, TableBody, TableCaption, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { Input } from '@/components/ui/input'; // Assume you have an input component for search
 
@@ -23,6 +23,8 @@ function Category() {
   const [activeAction, setActiveAction] = useState<number | null>(null); // Track active action button for each category
   const [isEditing, setIsEditing] = useState<boolean>(false); // Track if we are editing
   const [editedCategory, setEditedCategory] = useState<any | null>(null); // Store the category being edited
+  const [isAdding, setIsAdding] = useState<boolean>(false); // Track if we are adding a new category
+  const [newCategory, setNewCategory] = useState<any>({ name: '', description: '', slug: '' }); // Store the new category details
 
   const filteredCategories = categories.filter((category) =>
     category.name.toLowerCase().includes(search.toLowerCase())
@@ -76,9 +78,28 @@ function Category() {
     }
   };
 
+  // Handle input change for adding new category
+  const handleAddChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setNewCategory({
+      ...newCategory,
+      [e.target.name]: e.target.value,
+    });
+  };
+
+  // Handle adding a new category
+  const handleAddSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (newCategory.name && newCategory.description && newCategory.slug) {
+      const newId = categories.length + 1;
+      setCategories([...categories, { id: newId, ...newCategory }]);
+      setNewCategory({ name: '', description: '', slug: '' }); // Reset the form
+      setIsAdding(false); // Close the add form
+    }
+  };
+
   return (
     <div className="overflow-x-auto bg-black text-white p-7 rounded-lg">
-      <div className="mb-4">
+      <div className="mb-4 flex justify-between items-center">
         {/* Search bar */}
         <Input
           type="text"
@@ -87,6 +108,13 @@ function Category() {
           placeholder="Search categories..."
           className="w-1/3 p-2 bg-gray-700 text-white rounded-lg"
         />
+        {/* Add new category button */}
+        <button
+          onClick={() => setIsAdding(true)}
+          className="flex items-center px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition-colors duration-200"
+        >
+          <FaPlus size={18} className="mr-2" /> Add Category
+        </button>
       </div>
 
       <Table className="min-w-full">
@@ -118,7 +146,7 @@ function Category() {
 
                 {/* Popover showing Edit/Delete options */}
                 {activeAction === category.id && (
-                  <div className=" z-10 absolute right-0 top-0 w-40 bg-gray-800 text-white rounded-lg shadow-lg p-2">
+                  <div className="z-10 absolute right-0 top-0 w-40 bg-gray-800 text-white rounded-lg shadow-lg p-2">
                     <button
                       onClick={() => handleEdit(category)} // Edit function
                       className="w-full text-left px-4 py-1 hover:bg-blue-500 transition-colors duration-200"
@@ -190,6 +218,63 @@ function Category() {
                 className="px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600"
               >
                 Save
+              </button>
+            </div>
+          </form>
+        </div>
+      )}
+
+      {/* Add Category Form Modal */}
+      {isAdding && (
+        <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
+          <form
+            onSubmit={handleAddSubmit}
+            className="bg-gray-800 p-6 rounded-lg w-96"
+          >
+            <h2 className="text-2xl text-white mb-4">Add New Category</h2>
+            <div className="mb-4">
+              <label htmlFor="name" className="block text-white">Name</label>
+              <input
+                type="text"
+                name="name"
+                value={newCategory.name}
+                onChange={handleAddChange}
+                className="w-full p-2 bg-gray-700 text-white rounded-lg"
+              />
+            </div>
+            <div className="mb-4">
+              <label htmlFor="description" className="block text-white">Description</label>
+              <input
+                type="text"
+                name="description"
+                value={newCategory.description}
+                onChange={handleAddChange}
+                className="w-full p-2 bg-gray-700 text-white rounded-lg"
+              />
+            </div>
+            <div className="mb-4">
+              <label htmlFor="slug" className="block text-white">Slug</label>
+              <input
+                type="text"
+                name="slug"
+                value={newCategory.slug}
+                onChange={handleAddChange}
+                className="w-full p-2 bg-gray-700 text-white rounded-lg"
+              />
+            </div>
+            <div className="flex justify-between">
+              <button
+                type="button"
+                onClick={() => setIsAdding(false)}
+                className="px-4 py-2 bg-gray-600 text-white rounded-lg hover:bg-gray-700"
+              >
+                Cancel
+              </button>
+              <button
+                type="submit"
+                className="px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600"
+              >
+                Add
               </button>
             </div>
           </form>
