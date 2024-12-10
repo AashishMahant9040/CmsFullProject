@@ -1,7 +1,7 @@
 'use client'
 import { usePathname } from 'next/navigation'
 import React, { SetStateAction, useEffect, useState } from 'react'
-import { blogPosts } from '@/app/allPost/data'
+import { blogPosts } from '@/app/(main)/allPost/data'
 
 const page = () => {
 

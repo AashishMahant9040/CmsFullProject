@@ -1,4 +1,5 @@
-import OverViewPage from './_components/overview';
+import OverViewPage from "./_components/overview";
+
 
 export const metadata = {
   title: 'Dashboard : Overview'
