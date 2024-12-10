@@ -10,8 +10,8 @@ export const metadata = {
 
 export default function MainLayout({ children }: { children: React.ReactNode }) {
     return (
-        <html lang="en">
-            <body className="w-full bg-[#06040B]">
+        <div>
+            <div className="w-full bg-[#06040B]">
             <SidebarProvider>
             <AppSidebar />
             <main className="w-full bg-[#06040B]">
@@ -23,7 +23,7 @@ export default function MainLayout({ children }: { children: React.ReactNode }) 
 
             </main>
           </SidebarProvider>
-            </body>
-        </html>
+            </div>
+        </div>
     );
 }
