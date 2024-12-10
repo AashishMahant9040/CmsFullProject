@@ -3,6 +3,7 @@ import React from 'react'
 import { useSidebar } from "@/components/ui/sidebar"
 import { AlignJustify } from 'lucide-react';
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
+import Link from 'next/link';
 
 import {
     DropdownMenu,
@@ -48,7 +49,9 @@ const Header = () => {
                 <DropdownMenuContent className='bg-[#06040B] text-gray-200 border-gray-800 -translate-x-2 md:-translate-x-8'>
                     <DropdownMenuLabel>My Account</DropdownMenuLabel>
                     <DropdownMenuSeparator className='bg-gray-800' />
-                    <DropdownMenuItem>Profile</DropdownMenuItem>
+                    <DropdownMenuItem>
+                        <Link href="/profile">Profile</Link>
+                    </DropdownMenuItem>
                     <DropdownMenuItem>Billing</DropdownMenuItem>
                     <DropdownMenuItem>Team</DropdownMenuItem>
                     <DropdownMenuItem>Subscription</DropdownMenuItem>
