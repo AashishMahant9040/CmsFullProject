@@ -1,5 +1,5 @@
 'use client';
-import { Home, ScrollText, UsersRound, Bell, Settings, ChevronRight, LucideProps, } from "lucide-react"
+import { Home, ScrollText, UsersRound, Bell, Settings, ChevronRight, LucideProps, Image, } from "lucide-react"
 
 import {
   Sidebar,
@@ -72,9 +72,19 @@ const items: MenuItem[] = [
     icon: UsersRound,
   },
   {
-    title: "Admin",
-    url: "/admin",
+    title: "Contributor",
+    url: "/contributor",
     icon: UsersRound,
+  },
+  {
+    title: "Mediator",
+    url: "/mediator",
+    icon: UsersRound,
+  },
+  {
+    title: "Media",
+    url: "/media",
+    icon: Image,
   },
   {
     title: "Notification",
