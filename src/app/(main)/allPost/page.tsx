@@ -1,7 +1,7 @@
 'use client'
-import { ArrowUpRight } from 'lucide-react';
+import { ArrowUpRight, Check } from 'lucide-react';
 import { useRouter } from 'next/navigation';
-import React from 'react'
+import React, { useState } from 'react'
 import { blogPosts } from './data';
 import {
     Pagination,
@@ -17,28 +17,46 @@ import {
 
 const page = () => {
 
+    const statusArr = ['All', 'Publish', 'Draft', 'Schedule', 'Rejected', 'Await approve', 'Delete'];
 
 
     const router = useRouter();
 
+    const [filterBy, setFilterBy] = useState('all');
+    const [postData, setPostData] = useState(blogPosts);
+
+    const handleFilter = (value: string) => {
+        if (value === 'all') {
+            setFilterBy('all');
+            setPostData(blogPosts);
+            return;
+        }
+        const filteredData = blogPosts.filter((blog) => blog.status === value);
+        setPostData(filteredData);
+        setFilterBy(value);
+    }
+
     return (
-
         <div>
+            <div className='w-full flex flex-row flex-wrap gap-2 sm:gap-4 lg:gap-8  px-2 ms:px-8 mt-6 md:mt-12'>
+                <div className='flex gap-2 flex-row items-center flex-wrap text-xs sm:text-sm'>
+                    {
+                        statusArr.map((status, index) => (
+                            <div key={index} onClick={() => handleFilter(status.toLowerCase())} className={`bg-gray-900 px-2 py-1 sm:px-4 sm:py-2 rounded-lg border-[1px] border-gray-800 flex flex-row items-center gap-2 cursor-pointer ${filterBy == status.toLowerCase() ? "text-blue-800 border-blue-800" : ""}`}>
+                                {
+                                    filterBy === status.toLocaleLowerCase() ?
+                                        <Check className='w-4 h-4 sm:w-6 sm:h-6' />
+                                        : null
+                                }
+                                <span>{status}</span>
+                            </div>
+                        ))
+                    }
 
-            <div className='w-full flex flex-row gap-5 px-8 mt-6 md:mt-12'>
-                <div className='flex gap-2 flex-row items-center'>
-                    <p className='text-lg'>Status</p>
-                    <select name="" id="" className='w-60 bg-[#06040B] border-[1px] border-gray-800 p-2 rounded-lg outline-none'>
-                        <option value="#">All</option>
-                        <option value="#">Draft</option>
-                        <option value="#">Published</option>
-                        <option value="#">Deleted</option>
-                    </select>
                 </div>
 
                 <div className='flex flex-row items-center'>
-
-                    <select name="" id="" className='w-60 bg-[#06040B] border-[1px] border-gray-800 p-2 rounded-lg outline-none'>
+                    <select name="" id="" className='w-60 bg-[#06040B] border-[1px] border-gray-800 px-2 py-1 sm:p-3 rounded-lg outline-none'>
                         <option value="#">-- Sort by --</option>
                         <option value="#">Recent</option>
                         <option value="#">Tranding</option>
@@ -51,14 +69,17 @@ const page = () => {
             <div className='w-full h-full flex flex-row flex-wrap items-start justify-center gap-5 p-4'>
 
                 {
-                    blogPosts.map((post, index) => (
+                    postData.map((post, index) => (
                         <div key={index} onClick={() => router.push(`/post/${post.id}`)} className='max-w-72 my-2 md:my-5 group cursor-pointer rounded-lg'>
                             <div className='w-full'>
                                 <img src={post.image ? "" : "/blogImg.png"} alt="Blog Image" className='w-full object-cover rounded-t-lg' />
                             </div>
 
                             <div className='text-gray-200 flex flex-col gap-1 md:gap-3 mt-2 text-sm md:text-base'>
-                                <p className='text-[#6941C6] text-sm'>{post.author} | {post.date}</p>
+                                <div className='flex flex-row justify-between'>
+                                    <p className='text-[#6941C6] text-sm'>{post.author} | {post.date}</p>
+                                    <p className=' text-sm'>{post.status.charAt(0).toUpperCase() + post.status.slice(1)}</p>
+                                </div>
                                 <h2 className='text-xl md:text-2xl group-hover:underline'>{post.title} &#8599;</h2>
                                 <p className='text-gray-400'>{post.excerpt}</p>
                                 <div className={`w-full flex flex-row flex-wrap gap-2`}>
@@ -77,14 +98,12 @@ const page = () => {
                                         ))
                                     }
                                 </div>
-
-
                             </div>
                         </div>
                     ))
                 }
 
-                <Pagination className='text-gray-200'>
+                {/* <Pagination className='text-gray-200'>
                     <PaginationContent>
                         <PaginationItem>
                             <PaginationPrevious />
@@ -99,7 +118,7 @@ const page = () => {
                             <PaginationNext href="#" />
                         </PaginationItem>
                     </PaginationContent>
-                </Pagination>
+                </Pagination> */}
 
             </div>
         </div>

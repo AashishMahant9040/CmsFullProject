@@ -3,9 +3,10 @@
 import React, { useState } from 'react';
 import { FaEdit, FaCheck, FaTimes } from 'react-icons/fa';
 import { AiOutlineUser } from 'react-icons/ai';
-import { FiEye, FiEyeOff } from 'react-icons/fi'; 
+import { FiEye, FiEyeOff } from 'react-icons/fi';
 
 const Profile = () => {
+
   const [isEditing, setIsEditing] = useState(false);
   const [passwordVisible, setPasswordVisible] = useState(false);
   const [profileData, setProfileData] = useState({
@@ -65,9 +66,8 @@ const Profile = () => {
               value={editData.firstName}
               onChange={handleChange}
               disabled={!isEditing}
-              className={`w-full px-4 py-2 bg-gray-700 rounded-md focus:ring ${
-                isEditing ? 'ring-yellow-500' : 'opacity-50 cursor-not-allowed'
-              }`}
+              className={`w-full px-4 py-2 bg-gray-700 rounded-md focus:ring ${isEditing ? 'ring-yellow-500' : 'opacity-50 cursor-not-allowed'
+                }`}
             />
           </div>
 
@@ -83,14 +83,13 @@ const Profile = () => {
               value={editData.lastName}
               onChange={handleChange}
               disabled={!isEditing}
-              className={`w-full px-4 py-2 bg-gray-700 rounded-md focus:ring ${
-                isEditing ? 'ring-yellow-500' : 'opacity-50 cursor-not-allowed'
-              }`}
+              className={`w-full px-4 py-2 bg-gray-700 rounded-md focus:ring ${isEditing ? 'ring-yellow-500' : 'opacity-50 cursor-not-allowed'
+                }`}
             />
           </div>
 
-                  {/* Bio */}
-                  <div className="sm:col-span-2">
+          {/* Bio */}
+          <div className="sm:col-span-2">
             <label className="block text-sm font-medium mb-2" htmlFor="bio">
               Bio
             </label>
@@ -120,9 +119,8 @@ const Profile = () => {
               value={editData.email}
               onChange={handleChange}
               disabled={!isEditing}
-              className={`w-full px-4 py-2 bg-gray-700 rounded-md focus:ring ${
-                isEditing ? 'ring-yellow-500' : 'opacity-50 cursor-not-allowed'
-              }`}
+              className={`w-full px-4 py-2 bg-gray-700 rounded-md focus:ring ${isEditing ? 'ring-yellow-500' : 'opacity-50 cursor-not-allowed'
+                }`}
             />
           </div>
 
@@ -138,13 +136,12 @@ const Profile = () => {
               value={editData.role}
               onChange={handleChange}
               disabled={!isEditing}
-              className={`w-full px-4 py-2 bg-gray-700 rounded-md focus:ring ${
-                isEditing ? 'ring-yellow-500' : 'opacity-50 cursor-not-allowed'
-              }`}
+              className={`w-full px-4 py-2 bg-gray-700 rounded-md focus:ring ${isEditing ? 'ring-yellow-500' : 'opacity-50 cursor-not-allowed'
+                }`}
             />
           </div>
 
-  
+
 
           {/* Password */}
           <div className="sm:col-span-2 relative">
@@ -159,9 +156,8 @@ const Profile = () => {
                 value={editData.password}
                 onChange={handleChange}
                 disabled={!isEditing}
-                className={`w-full px-4 py-2 bg-transparent focus:ring ${
-                  isEditing ? 'ring-yellow-500' : 'opacity-50 cursor-not-allowed'
-                }`}
+                className={`w-full px-4 py-2 bg-transparent focus:ring ${isEditing ? 'ring-yellow-500' : 'opacity-50 cursor-not-allowed'
+                  }`}
               />
               {isEditing && (
                 <button
