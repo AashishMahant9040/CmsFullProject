@@ -77,9 +77,9 @@ const App: React.FC = () => {
 
   return (
     <div className='border-1 border-dashed border-gray-900 p-4'>
-      <div className="bg-[#0A090F] border-[#414141] p-6 space-y-6 flex gap-8 mx-auto">
+      <div className="bg-[#0A090F] border-[#414141] p-6 space-y-6 flex flex-col sm:flex-row gap-8 mx-auto">
         {/* Left side (Post title, description, and tags) */}
-        <div className="w-[70%] flex flex-col space-y-9">
+        <div className="w-full sm:w-[70%] flex flex-col space-y-9">
           {/* Post Title */}
           <div>
             <label htmlFor="postTitle" className="text-white block mb-2">Post Title</label>
@@ -132,7 +132,7 @@ const App: React.FC = () => {
         </div>
 
         {/* Right side (Post status, visibility, category, publish date) */}
-        <div className="w-[30%] flex flex-col space-y-4 border-2 border-solid border-gray-900 rounded-lg p-4">
+        <div className="w-full sm:w-[30%] flex flex-col space-y-4 border-2 border-solid border-gray-900 rounded-lg p-4">
           {/* Post Status */}
           <div>
             <label htmlFor="postStatus" className="text-white">Post Status</label>
@@ -148,8 +148,8 @@ const App: React.FC = () => {
             </select>
           </div>
 
-   {/* Publish Date */}
-   <div >
+          {/* Publish Date */}
+          <div>
             <label htmlFor="publishDate" className="text-white block">Publish Date</label>
             <DatePicker
               selected={publishDate}
@@ -190,8 +190,6 @@ const App: React.FC = () => {
               <option value="finance">Finance</option>
             </select>
           </div>
-
-       
 
           <div className="flex justify-center">
             <button

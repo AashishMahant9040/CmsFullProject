@@ -12,58 +12,58 @@ import {
   TableRow,
 } from "@/components/ui/table";
 
-const initialContributors = [
-  { id: 1, name: 'Eve Smith', email: 'evesmith@example.com', role: 'contributor' },
-  { id: 2, name: 'John Doe', email: 'johndoe@example.com', role: 'contributor' },
-  { id: 3, name: 'Sarah Lee', email: 'sarahlee@example.com', role: 'contributor' },
-  { id: 4, name: 'Michael Turner', email: 'michaelturner@example.com', role: 'user' },
-  { id: 5, name: 'Jessica Wilson', email: 'jessicawilson@example.com', role: 'user' },
-  { id: 6, name: 'David Brown', email: 'davidbrown@example.com', role: 'contributor' },
-  { id: 7, name: 'Olivia Green', email: 'oliviagreen@example.com', role: 'user' },
-  { id: 8, name: 'Daniel Harris', email: 'danielharris@example.com', role: 'user' },
-  { id: 9, name: 'Emily Adams', email: 'emilyadams@example.com', role: 'contributor' },
-  { id: 10, name: 'Luke Evans', email: 'lukeevans@example.com', role: 'user' },
+const initialAdmins = [
+  { id: 2, name: 'Alice Johnson', email: 'alicejohnson@example.com', role: 'moderator' },
+  { id: 3, name: 'Bob Brown', email: 'bobbrown@example.com', role: 'moderator' },
+  { id: 4, name: 'Charlie Williams', email: 'charliewilliams@example.com', role: 'moderator' },
+  { id: 5, name: 'David Lee', email: 'davidlee@example.com', role: 'moderator' },
+  { id: 6, name: 'Emma Davis', email: 'emmadavis@example.com', role: 'user' },
+  { id: 7, name: 'Frank Harris', email: 'frankharris@example.com', role: 'user' },
+  { id: 8, name: 'Grace Clark', email: 'graceclark@example.com', role: 'user' },
+  { id: 9, name: 'Hannah Lewis', email: 'hannahlewis@example.com', role: 'user' },
+  { id: 10, name: 'Ian Young', email: 'ianyoung@example.com', role: 'user' },
+  { id: 11, name: 'Jack Martin', email: 'jackmartin@example.com', role: 'user' },
 ];
 
-function Contributor() {
-  const [contributors, setContributors] = useState(initialContributors);
+function Admin() {
+  const [admins, setAdmins] = useState(initialAdmins);
   const [currentPage, setCurrentPage] = useState(1);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [actionType, setActionType] = useState<'remove' | 'add' | null>(null);
-  const [selectedContributor, setSelectedContributor] = useState<any>(null);
+  const [selectedAdmin, setSelectedAdmin] = useState<any>(null);
 
   const itemsPerPage = 8;
-  const totalPages = Math.ceil(contributors.length / itemsPerPage);
+  const totalPages = Math.ceil(admins.length / itemsPerPage);
 
-  const openModal = (action: 'remove' | 'add', contributor: any) => {
+  const openModal = (action: 'remove' | 'add', admin: any) => {
     setActionType(action);
-    setSelectedContributor(contributor);
+    setSelectedAdmin(admin);
     setIsModalOpen(true);
   };
 
   const closeModal = () => {
     setIsModalOpen(false);
     setActionType(null);
-    setSelectedContributor(null);
+    setSelectedAdmin(null);
   };
 
   const confirmAction = () => {
-    if (actionType && selectedContributor) {
-      const updatedContributors = contributors.map((contributor) =>
-        contributor.id === selectedContributor.id
+    if (actionType && selectedAdmin) {
+      const updatedAdmins = admins.map((admin) =>
+        admin.id === selectedAdmin.id
           ? {
-              ...contributor,
-              role: actionType === 'remove' ? 'user' : 'contributor',
+              ...admin,
+              role: actionType === 'remove' ? 'user' : 'moderator',
             }
-          : contributor
+          : admin
       );
-      setContributors(updatedContributors);
-      console.log(`${actionType} action confirmed for ${selectedContributor.name}!`);
+      setAdmins(updatedAdmins);
+      console.log(`${actionType} action confirmed for ${selectedAdmin.name}!`);
     }
     closeModal();
   };
 
-  const currentContributors = contributors.slice(
+  const currentAdmins = admins.slice(
     (currentPage - 1) * itemsPerPage,
     currentPage * itemsPerPage
   );
@@ -80,7 +80,7 @@ function Contributor() {
   return (
     <div className="overflow-x-auto bg-black text-white p-7 rounded-lg">
       <Table className="min-w-full">
-        <TableCaption className="text-3xl text-white">List of Contributors</TableCaption>
+        <TableCaption className="text-3xl text-white">List of Moderators</TableCaption>
 
         <TableHeader>
           <TableRow className="text-2xl border-gray-900">
@@ -91,39 +91,37 @@ function Contributor() {
           </TableRow>
         </TableHeader>
         <TableBody className="border-gray-900">
-          {currentContributors.map((contributor) => (
-            <TableRow className="border-gray-900" key={contributor.id}>
-              <TableCell className="font-medium">{contributor.name}</TableCell>
+          {currentAdmins.map((admin) => (
+            <TableRow className="border-gray-900" key={admin.id}>
+              <TableCell className="font-medium">{admin.name}</TableCell>
               <TableCell className="flex items-center space-x-2">
                 <FaEnvelope size={16} className="text-gray-500" />
-                <span>{contributor.email}</span>
+                <span>{admin.email}</span>
               </TableCell>
               <TableCell>
                 <span
                   className={`px-2 py-1 text-xs font-semibold ${
-                    contributor.role === 'contributor' ? 'text-blue-500' : 'text-gray-500'
+                    admin.role === 'moderator' ? 'text-green-500' : 'text-gray-500'
                   }`}
                 >
-                  {contributor.role === 'contributor' ? ' Contributor' : ' User'}
+                  {admin.role.charAt(0).toUpperCase() + admin.role.slice(1)}
                 </span>
               </TableCell>
               <TableCell className="flex justify-end space-x-4">
-                {/* Show Remove icon only for contributors */}
-                {contributor.role === 'contributor' && (
+                {/* Show Remove icon only for moderators */}
+                {admin.role === 'moderator' && (
                   <button
-                    onClick={() => openModal('remove', contributor)}
+                    onClick={() => openModal('remove', admin)}
                     className="text-red-500 hover:text-red-800 transition-colors duration-200"
-                    title="Remove from Contributors"
                   >
                     <FaUserMinus size={18} />
                   </button>
                 )}
-                {/* Show Add icon only for non-contributors */}
-                {contributor.role === 'user' && (
+                {/* Show Add icon only for users */}
+                {admin.role === 'user' && (
                   <button
-                    onClick={() => openModal('add', contributor)}
+                    onClick={() => openModal('add', admin)}
                     className="text-green-500 hover:text-green-800 transition-colors duration-200"
-                    title="Add to Contributors"
                   >
                     <FaUserPlus size={18} />
                   </button>
@@ -159,8 +157,8 @@ function Contributor() {
           <div className="bg-white text-black rounded-lg p-6 w-96 shadow-lg">
             <h3 className="text-xl font-semibold mb-4">
               {actionType === 'remove'
-                ? `Are you sure you want to remove ${selectedContributor?.name} as a Contributor?`
-                : `Are you sure you want to add ${selectedContributor?.name} as a Contributor?`}
+                ? `Are you sure you want to demote ${selectedAdmin?.name} to User?`
+                : `Are you sure you want to promote ${selectedAdmin?.name} to Moderator?`}
             </h3>
             <div className="flex justify-end space-x-4">
               <button
@@ -173,7 +171,7 @@ function Contributor() {
                 onClick={confirmAction}
                 className="px-4 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700"
               >
-                {actionType === 'remove' ? 'Remove Contributor' : 'Add Contributor'}
+                {actionType === 'remove' ? 'Demote to User' : 'Promote to Moderator'}
               </button>
             </div>
           </div>
@@ -183,4 +181,4 @@ function Contributor() {
   );
 }
 
-export default Contributor;
+export default Admin;
