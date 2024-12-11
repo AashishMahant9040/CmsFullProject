@@ -228,6 +228,7 @@ const ProfilePage: React.FC = () => {
               onChange={handleChange}
               disabled={!isEditing}
               className={`w-full px-4 py-2 bg-gray-700 rounded-md focus:ring ${isEditing ? 'ring-yellow-500' : 'opacity-50 cursor-not-allowed'}`}
+
             />
           </div>
 
