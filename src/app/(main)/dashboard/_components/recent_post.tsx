@@ -24,7 +24,7 @@ const trendingPosts = [
   },
   {
     id: 3,
-    title: "Understanding TypeScript in 2024",
+    title: "Understanding Typescript in 2024",
     author: "Isabella Nguyen",
     authorEmail: "isabella.nguyen@email.com",
     avatarSrc: "/avatars/03.png",
@@ -36,11 +36,11 @@ const trendingPosts = [
 
 export function TrendingPosts() {
   return (
-    <div className="space-y-8">
+    <div className="space-y-8 ">
       {/* Trending Posts Section */}
       {trendingPosts.map((post) => (
-        <div key={post.id} className="flex items-center space-x-4 p-4 border-b border-gray-800 hover:transition-all">
-          <Avatar className="h-12 w-12">
+        <div key={post.id} className="flex items-center space-x-4 p-3 border-b border-gray-800 hover:transition-all">
+          <Avatar className="h-14 w-14">
             <AvatarImage src={post.avatarSrc} alt={`Avatar of ${post.author}`} />
             <AvatarFallback>{post.author[0]}</AvatarFallback>
           </Avatar>
@@ -54,8 +54,7 @@ export function TrendingPosts() {
             <div className="flex items-center justify-between text-sm font-medium">
               <span className="text-green-600">Likes: {post.likes}</span>
               <a href={`mailto:${post.authorEmail}`} className="text-blue-500 hover:underline">
-                Contact Author
-              </a>
+Contact Author              </a>
             </div>
           </div>
         </div>

@@ -52,9 +52,9 @@ function Admin() {
       const updatedAdmins = admins.map((admin) =>
         admin.id === selectedAdmin.id
           ? {
-            ...admin,
-            role: actionType === 'remove' ? 'user' : 'moderator',
-          }
+              ...admin,
+              role: actionType === 'remove' ? 'user' : 'moderator',
+            }
           : admin
       );
       setAdmins(updatedAdmins);
@@ -100,8 +100,10 @@ function Admin() {
               </TableCell>
               <TableCell>
                 <span
-                  className={`px-2 py-1 text-xs font-semibold ${admin.role === 'moderator' ? 'text-green-500' : 'text-gray-500'
-                    }`}
+                  className={`px-2 py-1 text-xs font-semibold ${
+                    admin.role === 'moderator' ? 'text-green-500' : 'text-gray-500'
+                  }`}
+
                 >
                   {admin.role.charAt(0).toUpperCase() + admin.role.slice(1)}
                 </span>
