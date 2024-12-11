@@ -1,6 +1,6 @@
 'use client';
 import React, { useState } from 'react';
-import { FaTrashAlt, FaBan, FaEnvelope, FaUndo, FaUserMinus } from 'react-icons/fa'; 
+import { FaTrashAlt, FaBan, FaEnvelope, FaUndo, FaUserMinus } from 'react-icons/fa';
 import {
   Table,
   TableBody,
@@ -42,9 +42,9 @@ function Admin() {
       const updatedAdmins = admins.map((admin) =>
         admin.id === selectedAdmin.id
           ? {
-              ...admin,
-              role: actionType === 'remove' ? 'User' : admin.role,  // Remove admin status
-            }
+            ...admin,
+            role: actionType === 'remove' ? 'User' : admin.role,  // Remove admin status
+          }
           : admin
       );
       setAdmins(updatedAdmins);
@@ -76,13 +76,12 @@ function Admin() {
               </TableCell>
               <TableCell>
                 <span
-                  className={`px-2 py-1 text-xs font-semibold ${
-                    admin.role === 'Super Admin'
-                      ? 'text-blue-500'
-                      : admin.role === 'Admin'
+                  className={`px-2 py-1 text-xs font-semibold ${admin.role === 'Super Admin'
+                    ? 'text-blue-500'
+                    : admin.role === 'Admin'
                       ? 'text-green-500'
                       : 'text-gray-500'
-                  }`}
+                    }`}
                 >
                   {admin.role}
                 </span>

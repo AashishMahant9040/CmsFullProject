@@ -52,9 +52,7 @@ const Header = () => {
                     <DropdownMenuItem>
                         <Link href="/profile">Profile</Link>
                     </DropdownMenuItem>
-                    <DropdownMenuItem>Billing</DropdownMenuItem>
-                    <DropdownMenuItem>Team</DropdownMenuItem>
-                    <DropdownMenuItem>Subscription</DropdownMenuItem>
+                    <DropdownMenuItem>Log out</DropdownMenuItem>
                 </DropdownMenuContent>
             </DropdownMenu>
 
