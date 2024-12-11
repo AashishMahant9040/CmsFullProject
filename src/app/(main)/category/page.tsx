@@ -99,14 +99,14 @@ function Category() {
 
   return (
     <div className="overflow-x-auto bg-black text-white p-7 rounded-lg">
-      <div className="mb-4 flex justify-between items-center">
+      <div className="mb-4 flex justify-between items-center flex-wrap">
         {/* Search bar */}
         <Input
           type="text"
           value={search}
           onChange={handleSearchChange}
           placeholder="Search categories..."
-          className="w-1/3 p-2 bg-gray-700 text-white rounded-lg"
+          className="w-full sm:w-1/3 p-2 bg-gray-700 text-white rounded-lg mb-4 sm:mb-0"
         />
         {/* Add new category button */}
         <button
@@ -172,7 +172,7 @@ function Category() {
         <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
           <form
             onSubmit={handleEditSubmit}
-            className="bg-gray-800 p-6 rounded-lg w-96"
+            className="bg-gray-800 p-6 rounded-lg w-full sm:w-96"
           >
             <h2 className="text-2xl text-white mb-4">Edit Category</h2>
             <div className="mb-4">
@@ -229,7 +229,7 @@ function Category() {
         <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
           <form
             onSubmit={handleAddSubmit}
-            className="bg-gray-800 p-6 rounded-lg w-96"
+            className="bg-gray-800 p-6 rounded-lg w-full sm:w-96"
           >
             <h2 className="text-2xl text-white mb-4">Add New Category</h2>
             <div className="mb-4">
