@@ -1,5 +1,8 @@
 'use client';
-import { Home, ScrollText, UsersRound, Bell, Settings, ChevronRight, LucideProps, Image, } from "lucide-react"
+import { Home, ScrollText, UsersRound, Bell, Settings, ChevronRight, LucideProps, Image, Plus, } from "lucide-react"
+import { BiCategory } from "react-icons/bi";
+import { MdPostAdd } from "react-icons/md";
+import { IoPricetags } from "react-icons/io5";
 
 import {
   Sidebar,
@@ -29,7 +32,7 @@ import { ForwardRefExoticComponent, RefAttributes, useState } from "react";
 interface MenuItem {
   title: string; // Title of the menu item
   url?: string; // URL (optional for items with subMenu)
-  icon: ForwardRefExoticComponent<Omit<LucideProps, "ref"> & RefAttributes<SVGSVGElement>>; // Icon component
+  icon: ForwardRefExoticComponent<Omit<LucideProps, "ref"> & RefAttributes<SVGSVGElement>> | any; // Icon component
   subMenu?: MenuItem[]; // Optional sub-menu items
 }
 
@@ -47,22 +50,22 @@ const items: MenuItem[] = [
       {
         title: "New Post",
         url: "/newPost",
-        icon: Home,
+        icon: MdPostAdd,
       },
       {
         title: "All Post",
         url: "/allPost",
-        icon: Home,
+        icon: ScrollText,
       },
       {
         title: "Category",
         url: "/category",
-        icon: Home,
+        icon: BiCategory,
       },
       {
         title: "Tags",
         url: "/tags",
-        icon: Home,
+        icon: IoPricetags,
       },
     ]
   },
@@ -108,7 +111,7 @@ export function AppSidebar() {
     <Sidebar className="border-gray-800">
       <SidebarContent className="bg-[#06040B] text-gray-200">
         <SidebarGroup className="p-0">
-          <SidebarGroupLabel className="h-16 -my-[0.5px] ml-2 text-3xl text-gray-200">CMS</SidebarGroupLabel>
+          <SidebarGroupLabel onClick={() => router.push('/dashboard')} className="h-16 -my-[0.5px] ml-2 text-3xl md:text-5xl text-gray-200 font-bold cursor-pointer">CMS</SidebarGroupLabel>
           <Separator className="bg-gray-800" />
           <SidebarGroupContent className="p-2">
             <SidebarMenu>
@@ -135,8 +138,9 @@ export function AppSidebar() {
                             <CollapsibleContent>
                               {
                                 item.subMenu?.map((subMenu, index) => (
-                                  <SidebarMenuSub key={index} onClick={(e) => { e.preventDefault(); router.push(subMenu.url!) }}>
-                                    <SidebarMenuSubItem className="my-1 p-2 rounded-lg hover:bg-white hover:text-black cursor-pointer">
+                                  <SidebarMenuSub key={index} onClick={(e) => { e.preventDefault(); router.push(subMenu.url!) }} className="border-none">
+                                    <SidebarMenuSubItem className="my-1 p-2 rounded-lg hover:bg-white hover:text-black cursor-pointer flex items-center gap-2">
+                                      <subMenu.icon className="w-5 h-5 text-5xl" />
                                       <span className="text-sm">{subMenu.title}</span>
                                     </SidebarMenuSubItem>
                                   </SidebarMenuSub>
