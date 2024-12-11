@@ -25,7 +25,9 @@ const BarGraph = () => {
       enabled: false,
     },
     xaxis: {
-      categories: ['January', 'February', 'March', 'April', 'May', 'June'],
+      categories: ['January', 'February', 'March', 'April', 'May', 'June'
+        ,'july','august','september','oktober','november','december'
+      ],
       labels: {
         style: {
           colors: '#ddd', 
@@ -76,7 +78,7 @@ const BarGraph = () => {
   const series = [
     {
       name: 'Posts',
-      data: [30, 40, 35, 50, 49, 55], 
+      data: [30, 40, 35, 50, 49, 55,34,60,57,20,50,34], 
     },
   ];
 

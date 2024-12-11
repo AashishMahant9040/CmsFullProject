@@ -38,7 +38,7 @@
 //   }
 // } satisfies ChartConfig;
 
-// export function AreaGraph() {
+// export  default function AreaGraph() {
 //   return (
 //     <Card className="bg-black text-white">
 //       <CardHeader>
