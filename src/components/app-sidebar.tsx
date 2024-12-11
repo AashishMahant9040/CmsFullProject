@@ -77,8 +77,8 @@ const items: MenuItem[] = [
     icon: UsersRound,
   },
   {
-    title: "Mediator",
-    url: "/mediator",
+    title: "Moderator",
+    url: "/moderator",
     icon: UsersRound,
   },
   {
